@@ -11,6 +11,7 @@ aiogram2 = "grpcio"
 grpcio = "^1.46.3"
 grpcio-tools = "^1.46.3"
 loguru-notification = "^0.0.7"
+pydantic = "^1.9.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
