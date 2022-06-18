@@ -1,6 +1,6 @@
 import generated.kaif_client_service_pb2 as client_pb2
 import generated.telegram_service_pb2 as telegram_pb2
-import domain.dtos as dtos
+import telegram_service.domain.dtos as dtos
 
 
 def client_message_to_dto(c: client_pb2.Client) -> dtos.Client:
