@@ -2,6 +2,7 @@ import asyncio
 import telegram_service.factories as factories
 import generated.telegram_service_pb2_grpc as pb2_grpc
 import grpc
+from telegram_service.handlers import dp
 from telegram_service.loader import log
 from telegram_service.config import settings
 
@@ -12,6 +13,7 @@ async def serve() -> None:
         factories.get_grpc_telegram_serivce(), server)
     server.add_insecure_port(f"[::]:{settings.telegram_service_port}")
     await server.start()
+    await dp.start_polling()
     await server.wait_for_termination()
 
 
