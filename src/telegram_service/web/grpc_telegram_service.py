@@ -22,6 +22,7 @@ class GrpcTelegramService(telegram_service_pb2_grpc.TelegramService):
         request: telegram_service_pb2.MessageRequest,
         _
     ) -> Empty:
-        request_dto = mappers.message_request_message_to_dto()
+        request_dto = mappers.message_request_message_to_dto(request)
         await self._service.send_message(request_dto)
         return Empty()
+
