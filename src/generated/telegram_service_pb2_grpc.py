@@ -3,7 +3,7 @@
 import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-import telegram_service_pb2 as telegram__service__pb2
+import generated.telegram_service_pb2 as telegram__service__pb2
 
 
 class TelegramServiceStub(object):

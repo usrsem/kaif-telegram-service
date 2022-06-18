@@ -3,7 +3,7 @@
 import grpc
 
 from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-import kaif_client_service_pb2 as kaif__client__service__pb2
+import generated.kaif_client_service_pb2 as kaif__client__service__pb2
 
 
 class ClientServiceStub(object):
@@ -25,10 +25,10 @@ class ClientServiceStub(object):
                 request_serializer=kaif__client__service__pb2.ClientRequest.SerializeToString,
                 response_deserializer=kaif__client__service__pb2.Client.FromString,
                 )
-        self.GetAllClients = channel.unary_unary(
+        self.GetAllClients = channel.unary_stream(
                 '/ClientService/GetAllClients',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-                response_deserializer=kaif__client__service__pb2.ClientsList.FromString,
+                response_deserializer=kaif__client__service__pb2.Client.FromString,
                 )
         self.UpdateClient = channel.unary_unary(
                 '/ClientService/UpdateClient',
@@ -77,10 +77,10 @@ def add_ClientServiceServicer_to_server(servicer, server):
                     request_deserializer=kaif__client__service__pb2.ClientRequest.FromString,
                     response_serializer=kaif__client__service__pb2.Client.SerializeToString,
             ),
-            'GetAllClients': grpc.unary_unary_rpc_method_handler(
+            'GetAllClients': grpc.unary_stream_rpc_method_handler(
                     servicer.GetAllClients,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                    response_serializer=kaif__client__service__pb2.ClientsList.SerializeToString,
+                    response_serializer=kaif__client__service__pb2.Client.SerializeToString,
             ),
             'UpdateClient': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateClient,
@@ -142,9 +142,9 @@ class ClientService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ClientService/GetAllClients',
+        return grpc.experimental.unary_stream(request, target, '/ClientService/GetAllClients',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            kaif__client__service__pb2.ClientsList.FromString,
+            kaif__client__service__pb2.Client.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
